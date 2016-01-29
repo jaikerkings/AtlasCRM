@@ -1,0 +1,13 @@
+<!-- variables globales para los javascripts incluidos despues -->
+<script>
+    /*var formularioactualizarusuarios = null;
+    var fotoestudiantedefecto = '<%= "#{@fotoestudiantedefecto}" %>';
+    var home_app = '<%= "http://#{request.host}:#{request.port}/"%>';*/
+    var rolUsuarioActual = '<%= "#{session[:current_user_rol]}" %>';
+</script>
+
+<!-- Incluya los javascripts propios -->
+<script type="text/javascript" src="js/app/app.js"></script>
+
+<h1>App#index (rol actual: <%= @listaRutasAcargar %>)</h1>
+<p>Find me in app/views/app/index.html.erb</p>

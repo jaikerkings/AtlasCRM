@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idOpcion: 1
+  idRol: 1
+  detalles: MyString
+  puedeGrabar: false
+  puedeConsultar: false
+  puedeEliminar: false
+
+two:
+  idOpcion: 1
+  idRol: 1
+  detalles: MyString
+  puedeGrabar: false
+  puedeConsultar: false
+  puedeEliminar: false

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idRol: MyString
+  descripcion: MyString
+  estatus: MyString
+
+two:
+  idRol: MyString
+  descripcion: MyString
+  estatus: MyString

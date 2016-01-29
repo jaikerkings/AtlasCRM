@@ -1,0 +1,36 @@
+/*Aqui pueden agregar css personalizado:*/
+
+body {
+	/*cambia el color de las letras (default #797979)*/
+	color: #424242;
+}
+
+#sidebar{
+	/*cambia el color de fondo del sidebar*/
+	background-color : #57889c;
+}
+
+.header {
+	/*cambia el color de fondo del header */
+	color: #fff;
+  	background: #3b5998;
+  	background-color : #3b5487;
+}
+
+/*tamano y posicion del logo */
+.logo-crm {
+	margin-top: 10px;
+	height: 45px;
+	width: 170px;
+}
+/* validacion para que cuando la pantalla llegue a ese
+   tamano, el logo se ponga mas pequeno */
+@media (max-width:479px) {
+	
+	.logo-crm {
+	margin-top: 15px;
+	height: 35px;
+	width: 100px;
+	}
+
+}

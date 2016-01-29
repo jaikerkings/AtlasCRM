@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idOpcion: 1
+  descripcion: MyString
+  rutaDeAcceso: MyString
+  idOpcionPadre: 1
+  estatus: MyString
+
+two:
+  idOpcion: 1
+  descripcion: MyString
+  rutaDeAcceso: MyString
+  idOpcionPadre: 1
+  estatus: MyString
