@@ -1,7 +1,8 @@
 class AppController < ApplicationController
   def index
-  	idRol = params[:idRol]
+  	idRol = session[:current_user_rol]
   	@listaRutasAcargar = OpcionesPorRol.new.BuscarListaArchivosAcargarPorRol idRol
+  	p "hola @listaRutasAcargar"
   end
 
   def prueba
