@@ -22,6 +22,6 @@ module AtlasCRMj3a
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    PATH_HB = "/home/scorpion/repos-projects/AtlasCRMj3a/app/views/layouts/"
+    #PATH_HB = "/home/scorpion/repos-projects/AtlasCRMj3a/app/views/layouts/"
   end
 end
