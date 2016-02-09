@@ -6,7 +6,7 @@ class AppController < ApplicationController
   end
 
   def prueba
-  	idRol = params[:idRol]
+  	idRol = session[:current_user_rol]
 
 	@listaRutasAcargar = OpcionesPorRol.new.BuscarListaArchivosAcargarPorRol idRol
 	#render :json => @listaRutasAcargar

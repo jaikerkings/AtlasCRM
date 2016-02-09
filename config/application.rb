@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module AtlasCRM
+module AtlasCRMj3a
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -22,6 +22,6 @@ module AtlasCRM
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    PATH_HB = "/home/jreyes/AtlasCRM/app/views/layouts/"
+    PATH_HB = "/home/scorpion/repos-projects/AtlasCRMj3a/app/views/layouts/"
   end
 end
