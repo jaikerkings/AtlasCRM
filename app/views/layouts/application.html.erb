@@ -1,15 +1,16 @@
-<%= render file: AtlasCRMj3a::Application::PATH_HB.to_s+'header.html.erb' %>
+<%= render 'layouts/header' %>
 <%= 
 if not (session[:current_user_id] == nil)
-	render file: AtlasCRMj3a::Application::PATH_HB.to_s+'importarExtjs.html.erb'	
+	render 'layouts/importarExtjs'	
 end
 %>
 </head>
 <body>
-<%= render file: AtlasCRMj3a::Application::PATH_HB.to_s+'template_header.html.erb' %>
+<%= render 'layouts/template_header' %>
+<%= render 'layouts/bottom' %>
 
 <%= yield %>
 
-<%= render file: AtlasCRMj3a::Application::PATH_HB.to_s+'template_bottom.html.erb' %>
+<%= render 'layouts/template_bottom' %>
 </body>
-<%= render file: AtlasCRMj3a::Application::PATH_HB.to_s+'bottom.html.erb' %>
+<%= render 'layouts/bottom' %>
