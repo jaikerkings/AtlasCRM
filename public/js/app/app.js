@@ -26,7 +26,7 @@ var treeStore = Ext.create('Ext.data.TreeStore', {
 					//root: {expanded: true, text: "", "data": []}, // <- Inline root
 	         		proxy: {
 	         			type: 'ajax',
-	         			url: 'opcionMenus/obtenerMenuOpcionesPorRol?idRol='+rolUsuarioActual //variable global definida en el index.html.erb
+	         			url: 'rols/obtenerMenuOpcionesPorRol?idRol='+rolUsuarioActual //variable global definida en el index.html.erb
 	         		},
 	         		root: {
 	         			text: 'Menu',
