@@ -24,7 +24,7 @@ Ext.define('Rol', {
 
 Ext.define('ModulosModel', {
     extend: 'Ext.data.Model',
-    fields: ['Modulo','LinkDeAcceso', 'OpcionPadre','idOpcion', 'idOpcionPadre','ACTUALIZADO_POR' ]
+    fields: ['Modulo','LinkDeAcceso', 'OpcionPadre','idOpcion', 'idOpcionPadre','updated_at' ]
 });
 
 //***********************************************************************
@@ -52,7 +52,7 @@ Ext.define('PermisosStore', {
      proxy: {
                type: 'ajax',
                api: {
-                read: 'app/controller/rol_controller.php?operacion=buscarPermisosPorRol', //el id del rol se envia por parametro cuando se manda a cargar la grid
+                read: 'rols/buscarPermisosPorRol', //el id del rol se envia por parametro cuando se manda a cargar la grid
                 create: 'app/controller/rol_controller.php?operacion=agregarPermisoARol',
                 //update: 'app.php/users/update',
                 destroy: 'app/controller/rol_controller.php?operacion=quitarPermisoARol'
@@ -99,7 +99,7 @@ Ext.define('RolRemoteStore', {
     proxy: {
         type: 'ajax',
         api: {
-            //read: 'app/controller/rol_controller.php?operacion=buscarRoles', //cualquier parametro se puede agregar cuando se manda a cargar la grid con load
+            read: 'rols/buscarRoles', //cualquier parametro se puede agregar cuando se manda a cargar la grid con load
             create: 'app/controller/rol_controller.php?operacion=agregarRol',
             update: 'app/controller/rol_controller.php?operacion=actualizarRol',
             destroy: 'app/controller/rol_controller.php?operacion=quitarRol'
@@ -127,7 +127,7 @@ Ext.define('ModulosStore', {
     proxy: {
                type: 'ajax',
                api: {
-                //read: 'app/controller/modulo_controller.php?operacion=buscarModulos', //cualquier parametro se puede agregar cuando se manda a cargar la grid con load
+                read: 'opcionMenus/buscarModulos', //cualquier parametro se puede agregar cuando se manda a cargar la grid con load
                 create: 'app/controller/modulo_controller.php?operacion=agregarModulo',
                 update: 'app/controller/modulo_controller.php?operacion=actualizarModulo',
                 destroy: 'app/controller/modulo_controller.php?operacion=quitarModulo'
@@ -203,7 +203,7 @@ Ext.define('UsuariosXRolStore', {
      proxy: {
                type: 'ajax',
                api: {
-                read: 'app/controller/rol_controller.php?operacion=buscarUsuariosPorRol', //el id del rol se envia por parametro cuando se manda a cargar la grid
+                read: 'rols/buscarUsuariosPorRol', //el id del rol se envia por parametro cuando se manda a cargar la grid
                 create: 'app/controller/rol_controller.php?operacion=agregarUsuarioXRol',
                 //update: 'app/controller/rol_controller.php?operacion=actualizarUsuarioXRol',
                 destroy: 'app/controller/rol_controller.php?operacion=quitarUsuarioARol'
@@ -437,7 +437,7 @@ Ext.define('FrmAgregarNuevoModulo', {
         allowBlank: false,
         listeners: {
             focus: function(){
-                this.setValue('app/view/prestamos/seguros/nombreArchivo.php');
+                this.setValue('js/seguridad/opcionesMenuXrol/Main.js');
                 this.selectText();
             },
             blur: function(){
@@ -1114,9 +1114,10 @@ Ext.onReady(function() {
         title: '<h1 style="font-family: Georgia, "Times New Roman", Times, serif;">Actualizar Derechos de Acceso por Rol de Usuario</h1></br>',
         id: 'panelPrincipal',
         height: 600,
+        modal: true,
         width: '95%',
         layout: 'border',
-        //renderTo: 'marcoExtJs',
+        renderTo: 'centerContainer',
         style: {
             marginLeft: 'auto',
             marginRight: 'auto'

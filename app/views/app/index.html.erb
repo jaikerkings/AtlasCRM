@@ -7,11 +7,12 @@
 </script>
 
 <!-- Incluya los javascripts propios -->
-<%= render "archivosJSaCargarPorRol.html.erb" %>
-<script type="text/javascript" src="js/app/app.js"></script>
 
-<h1>App#index (rol actual: <%= session[:current_user_rol] %>)</h1>
-<% @listaRutasAcargar.each do |ruta| %>
-    <p>idOpcion: <%= ruta.idOpcion%>, ruta a cargar: <%= ruta.rutaDeAcceso%></p></br>
-<% end %>
-<p>Find me in app/views/app/index.html.erb</p>
+<script type="text/javascript" src="js/app/app.js"></script>
+<%= render "archivosJSaCargarPorRol.html.erb" %>
+
+<!--<h1>App#index (rol actual: <%# session[:current_user_rol] %>)</h1>-->
+<%# @listaRutasAcargar.each do |ruta| %>
+    <!--<p>idOpcion: <%# ruta.idOpcion%>, ruta a cargar: <%# ruta.rutaDeAcceso%></p></br>-->
+<%# end %>
+<!--<p>Find me in app/views/app/index.html.erb</p>-->
