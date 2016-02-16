@@ -1,0 +1,15 @@
+﻿idOpcion;TextoParaMostrar;LinkDeAcceso;idOpcionPadre;Estatus;ULTIMAACT;ACTUALIZADO_POR
+1;"P&oacute;lizas";;0;Activo;2015-07-15 00:00:00.000;R-0196/17784842
+6;"Incluir P&oacute;liza";app/view/prestamos/seguros/IncluirPoliza.php;1;Activo;2015-07-15 00:00:00.000;R-0196/17784842
+10;"Anular P&oacute;liza";app/view/prestamos/seguros/AnularPoliza.php;1;Activo;2015-07-15 00:00:00.000;R-0196/17784842
+11;"Abonar/Disminuir P&oacute;liza";app/view/prestamos/seguros/AbonarPoliza.php;1;Activo;2015-07-15 00:00:00.000;R-0196/17784842
+12;"Anular Abono de P&oacute;liza";app/view/prestamos/seguros/AnularAbono.php;1;Activo;2015-07-15 00:00:00.000;R-0196/17784842
+13;Reintegrar Movimiento;app/view/prestamos/seguros/ReintegrarMovimiento.php;1;Activo;2015-07-15 00:00:00.000;R-0196/17784842
+14;Incluir Lote de Polizas;app/view/prestamos/seguros/IncluirLotePolizas.php;1;Activo;2015-07-15 00:00:00.000;R-0196/17784842
+16;Convenimientos;;0;Activo;2015-07-15 00:00:00.000;R-0196/17784842
+17;Realizar Convenimiento;app/view/prestamos/seguros/RealizarConvenimiento.php;16;Activo;2015-07-15 00:00:00.000;R-0196/17784842
+19;Reiniciar Convenimiento;app/view/prestamos/seguros/ReiniciarConvenimiento.php;16;Activo;2015-07-15 00:00:00.000;R-0196/17784842
+20;Cerrar Convenimientos;app/view/prestamos/seguros/CerrarConv.php;16;Activo;2015-07-15 00:00:00.000;R-0196/17784842
+33;Nominas;;0;Activo;2015-11-10 10:57:47.730;P-0112/7419661
+28;Servicios;;0;Activo;2015-11-10 14:39:18.473;P-0112/7419661
+29;Crear Nomina;app/view/prestamos/seguros/crearNomina.php;33;Activo;2015-11-10 14:40:51.740;P-0112/7419661

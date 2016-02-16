@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   #get 'sessions/create'
 
   #get 'sessions/destroy'
+  resources :rols, only: [:index, :create, :destroy]
 
   resources :sessions, only: [:index, :create, :destroy]
   get '/signin',  to: 'sessions#index'

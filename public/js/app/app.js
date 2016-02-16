@@ -26,7 +26,7 @@ var treeStore = Ext.create('Ext.data.TreeStore', {
 					//root: {expanded: true, text: "", "data": []}, // <- Inline root
 	         		proxy: {
 	         			type: 'ajax',
-	         			url: 'opcionMenus/obtenerMenuOpcionesPorRol?idRol='+rolUsuarioActual //variable global definida en el index.html.erb
+	         			url: 'rols/obtenerMenuOpcionesPorRol?idRol='+rolUsuarioActual //variable global definida en el index.html.erb
 	         		},
 	         		root: {
 	         			text: 'Menu',
@@ -89,6 +89,7 @@ Ext.onReady(function() {
 	Ext.create('Ext.container.Viewport', {
 	    layout: 'border',
 	    id:'mainViewport',
+	    height: '100%',
 	    items: [{
 	        region: 'north',
 	        html: '<h1 class="x-panel-header">Page Title</h1>',
@@ -98,13 +99,17 @@ Ext.onReady(function() {
 	    }, Ext.create('treeMenu'),
 	    {
 	        region: 'center',
-	        xtype: 'tabpanel', // TabPanel itself has no title
-	        activeTab: 0,      // First tab active by default
+	        //xtype: 'container', // TabPanel itself has no title
+	        id: 'centerContainer',
+	        title:'AtlasCRM FrameWork',
+	        autoScroll : true,
+	        layout:'ux.center',
+	        /*activeTab: 0,      // First tab active by default
 	        items: {
 	            title: 'Default Tab',
 	            html: 'The first tab\'s content. Others may be added dynamically'
-	        }
-	    }/*{
+	        }*/
+	    }/*,{
 	        region: 'west',
 	        collapsible: true,
 	        title: 'Navigation',
