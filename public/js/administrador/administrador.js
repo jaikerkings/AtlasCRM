@@ -25,10 +25,10 @@ Ext.define('administradorViewController', {
 });
 
 
-Ext.define('administrador.view.administrador', {
+Ext.define('winAdministrador', {
     extend: 'Ext.window.Window',
     alias: 'widget.administrador',
-
+    id:'winAdministrador',
     requires: [
         'administradorViewModel',
         'Ext.form.Panel',
@@ -247,4 +247,8 @@ Ext.define('administrador.view.administrador', {
         }
     ]
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winAdministrador');
 });

@@ -12,8 +12,9 @@ Ext.Viewport.element.dom.addEventListener('click', function (e) {
 */
 function cargarOpcion() {
 	console.log("cargando..."+opcElegidaMenu);
-	$(document).load(opcElegidaMenu);
-	/*Ext.Ajax.request({
+	Ext.getCmp("panelModulosXrol").show();
+	/*$(document).load(opcElegidaMenu);
+	Ext.Ajax.request({
 	    url: opcElegidaMenu,
 	    success: function(response){
 	    	console.log(response);
@@ -40,7 +41,6 @@ var treeStore = Ext.create('Ext.data.TreeStore', {
 	         		}]
 	         	});
 
-
 Ext.define('treeMenu', {
 		extend:'Ext.tree.Panel',
 		alias: 'widget.treeMenu',
@@ -50,18 +50,18 @@ Ext.define('treeMenu', {
      	region:'west',
      	collapsible:true,
      	width: 220,
-        minSize: 100,
-        maxSize: 220,
+     	height: 600,
         rootVisible: false,
-	    //renderTo: 'westPanel',
+	    renderTo: 'tree_el',
 	    bodyStyle: '',
 	    title: 'Menú de Opciones',
 	    useArrows: true,
+	    animate: false,
 	    listeners : {
             itemclick : function(view,rec,item,index,eventObj) {
 			    // You can access your node information using the record object
 			    // For example: record.get('id') or record.get('some-param')
-			    console.log(item.id+"el");
+			    console.log("id nodo: "+item.id);
 			    opcElegidaMenu = rec.get('href');
 			    console.log(opcElegidaMenu);
 			    console.log(rec.get('ruta'));
@@ -83,10 +83,13 @@ Ext.define('treeMenu', {
 		}
 });
 
-Ext.onReady(function() {
-	//var arbol = Ext.create('treeMenu');
 
-	Ext.create('Ext.container.Viewport', {
+Ext.onReady(function() {
+	
+
+	var arbol = Ext.create('treeMenu');
+
+	/*Ext.create('Ext.container.Viewport', {
 	    layout: 'border',
 	    id:'mainViewport',
 	    height: '100%',
@@ -109,7 +112,7 @@ Ext.onReady(function() {
 	            title: 'Default Tab',
 	            html: 'The first tab\'s content. Others may be added dynamically'
 	        }*/
-	    }/*,{
+	    /*},{
 	        region: 'west',
 	        collapsible: true,
 	        title: 'Navigation',
@@ -130,6 +133,6 @@ Ext.onReady(function() {
 	        collapsible: true,
 	        split: true,
 	        width: 150
-	    }*/]
-	});
+	    }]
+	});*/
 });
