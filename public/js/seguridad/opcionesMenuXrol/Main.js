@@ -1100,32 +1100,37 @@ Ext.define('FieldContModulosXrol', {
         text   : 'Cerrar',
         handler: function() {
             //$("#contenidos").load("cuerpo/inicio.php");
-            location.reload();
+            //location.reload();
+            Ext.getCmp('panelModulosXrol').hide();
         }
     }]
 });
 
 Ext.onReady(function() {
-    //$("#menuL_Cerrar_Ses").mousemove();
-    //$("#menuL_Cerrar_Ses").mouseover();
     //Ext.MessageBox.alert('Mensaje', "Felicitaciones!  La libreria: 5.1 esta instalada correctamente!");
    //***************************************************************************************************
-    Ext.create('Ext.panel.Panel', {
-        title: '<h1 style="font-family: Georgia, "Times New Roman", Times, serif;">Actualizar Derechos de Acceso por Rol de Usuario</h1></br>',
-        id: 'panelPrincipal',
-        height: 600,
-        modal: true,
-        width: '95%',
+    Ext.create('Ext.form.Panel', {
+        extend: 'Ext.Window',
+        title: 'Actualizar Derechos de Acceso por Rol de Usuario',
+        id: 'panelModulosXrol',
+        height: 500,
+        renderTo: 'formulario',
+        resizable   : true,
+        closable:true,
+        draggable:true,
+        modal: false,
         layout: 'border',
-        renderTo: 'centerContainer',
+        width: '85%',
+        hidden: true,
+        closeAction:'hide',
+        floating: false,
         style: {
             marginLeft: 'auto',
             marginRight: 'auto'
-        },
-        layout:'border',
+        },        
         defaults: {
             split: false,
-            bodyStyle: 'padding:15px'
+            bodyStyle: 'padding:5px'
         },
         items: [
             Ext.create('treePreviewMenu'),
