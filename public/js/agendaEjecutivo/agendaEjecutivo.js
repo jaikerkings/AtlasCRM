@@ -13,7 +13,7 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('MyApp.view.agendaEjecutivo', {
+Ext.define('winAgendaEjecutivo', {
     extend: 'Ext.window.Window',
 
     requires: [
@@ -29,7 +29,12 @@ Ext.define('MyApp.view.agendaEjecutivo', {
         'Ext.button.Button',
         'Ext.menu.DatePicker'
     ],
-
+    id: 'winAgendaEjecutivo',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
     height: 800,
     width: 900,
     layout: 'absolute',
@@ -138,4 +143,8 @@ Ext.define('MyApp.view.agendaEjecutivo', {
         me.callParent(arguments);
     }
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winAgendaEjecutivo');
 });

@@ -26,7 +26,13 @@ class OpcionesPorRol < ActiveRecord::Base #corresponde a la tabla OpcionesPorRol
 	  	@OpcionesPorRol = OpcionesPorRol.find_by_sql "SELECT opcion_menus.idOpcion, idOpcionPadre, descripcion, rutaDeAcceso, PuedeConsultar, PuedeGrabar, PuedeEliminar FROM opcion_menus INNER JOIN opciones_por_rols ON (opcion_menus.idOpcion = opciones_por_rols.idOpcion AND opciones_por_rols.idRol="+idRol.to_s+") WHERE opcion_menus.idOpcionPadre = "+padreid.to_s+" AND opcion_menus.Estatus='A';"
 	  	i=0
 	  	@OpcionesPorRol.each do |opcion|
-		   	@tira = @tira+" { text: '" + opcion.descripcion + "', id: '" + opcion.idOpcion.to_s  + "', href: 'javascript:cargarOpcion()', ruta:'"+opcion.rutaDeAcceso+"', "
+        valores = opcion.rutaDeAcceso.split('*')
+        id = valores[0]
+        id = id[3..id.length]
+        ruta = valores[1]
+        ruta = ruta[5..ruta.length]
+		   	#@tira = @tira+" { text: '" + opcion.descripcion + "', id: '" + opcion.idOpcion.to_s  + "', href: 'javascript:cargarOpcion(#{id})', ruta:'"+opcion.rutaDeAcceso+"', "
+        @tira = @tira+" { text: '" + opcion.descripcion + "', id: '#{id}', href: 'javascript:cargarOpcion()', ruta:'#{ruta}', "
 		   	self.ObtenerHijos(idRol,opcion.idOpcion)
 		   	i=i+1
 		   	if i < totaldeRegistros

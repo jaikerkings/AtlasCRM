@@ -12,15 +12,7 @@ Ext.Viewport.element.dom.addEventListener('click', function (e) {
 */
 function cargarOpcion() {
 	console.log("cargando..."+opcElegidaMenu);
-	Ext.getCmp("panelModulosXrol").show();
-	/*$(document).load(opcElegidaMenu);
-	Ext.Ajax.request({
-	    url: opcElegidaMenu,
-	    success: function(response){
-	    	console.log(response);
-	        //Ext.getCmp('mainViewport').update( response.responseText );
-	    }
-	});*/
+	Ext.getCmp(opcElegidaMenu).show();
 }
 
 var treeStore = Ext.create('Ext.data.TreeStore', {
@@ -61,8 +53,8 @@ Ext.define('treeMenu', {
             itemclick : function(view,rec,item,index,eventObj) {
 			    // You can access your node information using the record object
 			    // For example: record.get('id') or record.get('some-param')
-			    console.log("id nodo: "+item.id);
-			    opcElegidaMenu = rec.get('href');
+			    console.log("id Pantalla: "+rec.get('id'));
+			    opcElegidaMenu = rec.get('id');
 			    console.log(opcElegidaMenu);
 			    console.log(rec.get('ruta'));
 			    if(rec.get('id')=='SP') {

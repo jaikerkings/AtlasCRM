@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
   	if existe == 1
   		session[:current_user_id] = objUsuario.id
   		session[:current_user_rol] = objUsuario.idRol
-  		session[:current_user_name] = objUsuario.email
+  		session[:current_user_name] = objUsuario.username
+      session[:current_user_email] = objUsuario.email
 
   		fotoUsuario = "#{objUsuario.formatoFoto}" + Base64.encode64(objUsuario.foto);
       fotoUsuario = fotoUsuario.gsub(/\n/, '')

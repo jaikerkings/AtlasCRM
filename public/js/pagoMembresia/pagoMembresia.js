@@ -13,21 +13,28 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('administrador.view.pagoMembresia', {
+Ext.define('winPagoMembresia', {
     extend: 'Ext.window.Window',
     alias: 'widget.pagomembresia',
 
     requires: [
-        'administrador.view.pagoMembresiaViewModel',
+        //'administrador.view.pagoMembresiaViewModel',
         'Ext.form.Panel',
         'Ext.form.FieldSet',
         'Ext.form.field.ComboBox',
         'Ext.button.Button'
     ],
 
-    viewModel: {
+    /*viewModel: {
         type: 'pagomembresia'
-    },
+    },*/
+    id:'winPagoMembresia',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
+
     height: 800,
     width: 900,
     title: 'Pago Membresia CRM',
@@ -135,4 +142,8 @@ Ext.define('administrador.view.pagoMembresia', {
         }
     ]
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winPagoMembresia');
 });

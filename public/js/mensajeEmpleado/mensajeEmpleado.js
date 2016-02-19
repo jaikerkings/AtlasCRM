@@ -13,12 +13,12 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('administrador.view.mensajeEmpleado', {
+Ext.define('winMensajeEmpleado', {
     extend: 'Ext.window.Window',
     alias: 'widget.mensajeempleado',
 
     requires: [
-        'administrador.view.mensajeEmpleadoViewModel',
+        //'administrador.view.mensajeEmpleadoViewModel',
         'Ext.form.Panel',
         'Ext.form.field.TextArea',
         'Ext.grid.Panel',
@@ -27,9 +27,16 @@ Ext.define('administrador.view.mensajeEmpleado', {
         'Ext.button.Button'
     ],
 
-    viewModel: {
+    /*viewModel: {
         type: 'mensajeempleado'
-    },
+    },*/
+    id:'winMensajeEmpleado',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
+
     height: 900,
     width: 900,
     title: 'Enviar Mensaje a Empleados',
@@ -101,4 +108,8 @@ Ext.define('administrador.view.mensajeEmpleado', {
         }
     ]
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winMensajeEmpleado');
 });

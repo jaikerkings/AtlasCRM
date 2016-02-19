@@ -1118,7 +1118,7 @@ Ext.onReady(function() {
         resizable   : true,
         closable:true,
         draggable:true,
-        modal: false,
+        modal: true,
         layout: 'border',
         width: '85%',
         hidden: true,

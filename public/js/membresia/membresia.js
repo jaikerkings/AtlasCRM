@@ -13,12 +13,12 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('administrador.view.membresia', {
+Ext.define('winMembresia', {
     extend: 'Ext.window.Window',
     alias: 'widget.membresia',
 
     requires: [
-        'administrador.view.membresiaViewModel',
+        //'administrador.view.membresiaViewModel',
         'Ext.form.Panel',
         'Ext.button.Button',
         'Ext.form.FieldSet',
@@ -31,9 +31,15 @@ Ext.define('administrador.view.membresia', {
         'Ext.grid.column.Date'
     ],
 
-    viewModel: {
+    /*viewModel: {
         type: 'membresia'
-    },
+    },*/
+    id:'winMembresia',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
     height: 800,
     width: 900,
     title: 'Membresia',
@@ -158,4 +164,8 @@ Ext.define('administrador.view.membresia', {
         }
     ]
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winMembresia');
 });

@@ -12,7 +12,10 @@ class AppController < ApplicationController
     obj_file = File.open("app/views/app/_archivosJSaCargarPorRol.html.erb", "w")
     @listaRutasAcargar.each do |ruta|
       if ruta.rutaDeAcceso != ""
-        obj_file.puts "<script type='text/javascript' src='#{ruta.rutaDeAcceso}'></script>"
+        valores = ruta.rutaDeAcceso.split('*')
+        ruta = valores[1]
+        ruta = ruta[5..ruta.length]
+        obj_file.puts "<script type='text/javascript' src='#{ruta}'></script>"
       end  
     end
     #obj_file.puts "<script type='text/javascript' src='js/app/app.js'></script>"

@@ -13,9 +13,9 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('MyApp.view.agendaClientes', {
+Ext.define('winAgendaClientes', {
     extend: 'Ext.window.Window',
-
+    id: 'winAgendaClientes',
     requires: [
         'Ext.form.field.Date',
         'Ext.form.field.Time',
@@ -27,9 +27,14 @@ Ext.define('MyApp.view.agendaClientes', {
         'Ext.grid.View',
         'Ext.button.Button'
     ],
-
-    height: 800,
-    width: 900,
+    id: 'winAgendaClientes',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
+    //height: 800,
+    //width: 900,
     layout: 'absolute',
     title: 'Agenda de Reuniones',
 
@@ -127,4 +132,8 @@ Ext.define('MyApp.view.agendaClientes', {
         me.callParent(arguments);
     }
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winAgendaClientes');
 });

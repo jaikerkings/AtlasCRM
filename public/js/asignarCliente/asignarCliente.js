@@ -13,7 +13,7 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('administrador.view.asignarCliente', {
+Ext.define('winAsignarCliente', {
     extend: 'Ext.window.Window',
     alias: 'widget.asignarcliente',
 
@@ -31,6 +31,12 @@ Ext.define('administrador.view.asignarCliente', {
     viewModel: {
         type: 'asignarcliente'
     },
+    id:'winAsignarCliente',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
     height: 800,
     width: 900,
     title: 'Asignar Clientes',
@@ -124,4 +130,8 @@ Ext.define('administrador.view.asignarCliente', {
         }
     ]
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winAsignarCliente');
 });

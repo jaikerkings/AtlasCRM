@@ -13,7 +13,7 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('MyApp.view.empresa', {
+Ext.define('winEmpresa', {
     extend: 'Ext.window.Window',
 
     requires: [
@@ -23,7 +23,12 @@ Ext.define('MyApp.view.empresa', {
         'Ext.button.Button',
         'Ext.Img'
     ],
-
+    id:'winEmpresa',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
     height: 600,
     width: 800,
     layout: 'absolute',
@@ -125,4 +130,8 @@ Ext.define('MyApp.view.empresa', {
         me.callParent(arguments);
     }
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winEmpresa');
 });

@@ -13,7 +13,7 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('MyApp.view.catalogo', {
+Ext.define('winCatalogo', {
     extend: 'Ext.window.Window',
 
     requires: [
@@ -24,6 +24,13 @@ Ext.define('MyApp.view.catalogo', {
         'Ext.Img',
         'Ext.form.field.TextArea'
     ],
+
+    id:'winCatalogo',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
 
     height: 605,
     width: 897,
@@ -121,4 +128,8 @@ Ext.define('MyApp.view.catalogo', {
         me.callParent(arguments);
     }
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winCatalogo');
 });

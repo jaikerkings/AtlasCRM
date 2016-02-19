@@ -1,3 +1,362 @@
+//*********************************** ModelsSeguridad.js****************************************
+//***********************************************************************
+//Modelo Permisos usado en DataGridPermisos.js
+
+Ext.define('ModeloPermisos', {
+    extend: 'Ext.data.Model',
+    fields: [ 'Rol','Modulo','PuedeConsultar', 'PuedeGrabar', 'PuedeEliminar','idOpcion','idRol' ]
+});
+
+//************************************************************************
+//Modelo Rol usado para listar los roles en un combo
+Ext.define('Rol', {
+    extend: 'Ext.data.Model',
+
+    fields: [
+        { name: 'idRol',      type: 'int' },
+        { name: 'Descripcion',    type: 'string' }
+    ]
+});
+//*************************************************************************
+
+//*************************************************************************
+//Modelo Modulos usado en DataGridModulos.js y en StoresSeguridad.js para el store del combo que lista los modulos 
+
+Ext.define('ModulosModel', {
+    extend: 'Ext.data.Model',
+    fields: ['Modulo','LinkDeAcceso', 'OpcionPadre','idOpcion', 'idOpcionPadre','updated_at' ]
+});
+
+//***********************************************************************
+//Modelo UsuariosXRol usado en DataGridUsuariosXRol.js
+
+Ext.define('ModeloUsuariosXRol', {
+    extend: 'Ext.data.Model',
+    fields: [ 'Cedula','Nombres','Apellidos', 'Rol', 'idUsuario','NumeroSocio','idRol' ]
+});
+
+
+//***********************************fin de ModelsSeguridad.js****************************************
+
+//****************************************StoresSeguridad.js******************************************
+
+//**********************************************************************************************
+//Store usado en DataGridPermisos
+
+Ext.define('PermisosStore', {
+    extend: 'Ext.data.Store',
+     model: 'ModeloPermisos',
+     autoLoad: false,
+     autoSync: true,
+     //pageSize: itemsPerPage,
+     proxy: {
+               type: 'ajax',
+               api: {
+                read: 'rols/buscarPermisosPorRol', //el id del rol se envia por parametro cuando se manda a cargar la grid
+                create: 'app/controller/rol_controller.php?operacion=agregarPermisoARol',
+                //update: 'app.php/users/update',
+                destroy: 'app/controller/rol_controller.php?operacion=quitarPermisoARol'
+               },
+               reader: {
+                   type: 'json',
+                   root: 'rows'
+               },
+               writer: {
+                type             : 'json',
+                writeAllFields    : true,
+                allowSingle         : false,
+                encode             : false
+               }
+     },
+     listeners: {
+        write: function(proxy, operation){
+            //console.log(proxy);
+            //console.log(operation);
+            if (operation.action == 'destroy') {
+                console.log(operation.action+' complete!...');
+            }
+            if (operation.action == 'create') {
+                console.log(operation.action+' complete!...');
+            }
+            if (operation.action == 'update') {
+                console.log(operation.action+' complete!...');
+            }
+            //Ext.MessageBox.alert(operation.action, operation.getResultSet().getMessage());
+        }
+     }
+ });
+//***********************************************************************************************
+
+//***********************************************************************************************
+//Store usado para el combo que lista los roles
+Ext.define('RolRemoteStore', {
+    extend: 'Ext.data.Store',
+    alias: 'store.remote-rol',
+    model: 'Rol',
+    storeId: 'remote-rol',
+    autoLoad: true,
+    autoSync: true,
+    proxy: {
+        type: 'ajax',
+        api: {
+            read: 'rols/buscarRoles', //cualquier parametro se puede agregar cuando se manda a cargar la grid con load
+            create: 'app/controller/rol_controller.php?operacion=agregarRol',
+            update: 'app/controller/rol_controller.php?operacion=actualizarRol',
+            destroy: 'app/controller/rol_controller.php?operacion=quitarRol'
+        },
+        reader: {
+            type: 'json'
+        },
+        writer: {
+            type             : 'json',
+            writeAllFields    : true,
+            allowSingle         : false,
+            encode             : false
+        }
+     }
+});
+//***********************************************************************************************
+
+//**********************************************************************************************
+//Store usado en DataGridModulos
+Ext.define('ModulosStore', {
+    extend: 'Ext.data.Store',
+    model: 'ModulosModel',
+    autoLoad: true,
+    autoSync: true,
+    proxy: {
+               type: 'ajax',
+               api: {
+                read: 'opcionMenus/buscarModulos', //cualquier parametro se puede agregar cuando se manda a cargar la grid con load
+                create: 'app/controller/modulo_controller.php?operacion=agregarModulo',
+                update: 'app/controller/modulo_controller.php?operacion=actualizarModulo',
+                destroy: 'app/controller/modulo_controller.php?operacion=quitarModulo'
+               },
+               reader: {
+                   type: 'json',
+                   root: 'rows'
+               },
+               writer: {
+                type             : 'json',
+                writeAllFields    : true,
+                allowSingle         : false,
+                encode             : false
+               }
+    },
+    listeners: {
+        write: function(proxy, operation){
+            //console.log(proxy);
+            //console.log(operation);
+            if (operation.action == 'destroy') {
+                console.log(operation.action+' complete!...');
+            }
+            if (operation.action == 'create') {
+                console.log(operation.action+' complete!...');
+            }
+            if (operation.action == 'update') {
+                console.log(operation.action+' complete!...');
+            }
+            //Ext.MessageBox.alert(operation.action, operation.getResultSet().getMessage());
+        },
+        update: function(record, operation){
+            //ocurre despues de que se actualiza el registro y antes de que se ejecute el write
+            operation.data.idOpcionPadre = operation.data.OpcionPadre;
+        }
+    }
+});
+//***********************************************************************************************
+
+//***********************************************************************************************
+//Store usado para el combo usado para seleccionar el Menú padre al que pertenece una nueva opcion del menu
+Ext.define('ModulosPadreRemoteStore', {
+    extend: 'Ext.data.Store',
+    alias: 'store.remote-modulosPadre',
+    model: 'ModulosModel',
+    storeId: 'remote-modulosPadre',
+    proxy: {
+         type: 'ajax',
+         //url: 'app/controller/modulo_controller.php?operacion=buscarModulos',
+         url: 'opcionMenus/buscarModulos',
+         reader: {
+             type: 'json'/*,
+             rootProperty: 'roles'*/
+         }
+     },
+    autoLoad: true,
+    listeners: {
+        load: function(store){
+            var rec = { idOpcion: '0', Modulo: 'Ninguno, (ésta es una opción padre del menú.)' };
+            store.insert(0,rec);    
+        }
+    }
+});
+
+//**********************************************************************************************
+//Store usado en DataGridUsuariosXRol
+
+Ext.define('UsuariosXRolStore', {
+    extend: 'Ext.data.Store',
+     model: 'ModeloUsuariosXRol',
+     autoLoad: false,
+     autoSync: true,
+     //pageSize: itemsPerPage,
+     proxy: {
+               type: 'ajax',
+               api: {
+                read: 'rols/buscarUsuariosPorRol', //el id del rol se envia por parametro cuando se manda a cargar la grid
+                create: 'app/controller/rol_controller.php?operacion=agregarUsuarioXRol',
+                //update: 'app/controller/rol_controller.php?operacion=actualizarUsuarioXRol',
+                destroy: 'app/controller/rol_controller.php?operacion=quitarUsuarioARol'
+               },
+               reader: {
+                   type: 'json',
+                   root: 'rows'
+               },
+               writer: {
+                type             : 'json',
+                writeAllFields    : true,
+                allowSingle         : false,
+                encode             : false
+               }
+     },
+     listeners: {
+        write: function(proxy, operation){
+            //console.log(proxy);
+            //console.log(operation);
+            if (operation.action == 'destroy') {
+                console.log(operation.action+' complete!...');
+            }
+            if (operation.action == 'create') {
+                console.log(operation.action+' complete!...');
+            }
+            if (operation.action == 'update') {
+                console.log(operation.action+' complete!...');
+            }
+            //Ext.MessageBox.alert(operation.action, operation.getResultSet().getMessage());
+        }
+     }
+ });
+
+//*****************************************fin de StoresSeguridad.js**********************************
+
+//*****************************************DataGridUsuariosXRol.js************************************
+//Definicion del Modelo en ModelsSeguridad.js
+
+//Definicion del Data Store en StoresSeguridad.js
+
+//Definicion de la clase UsuariosXRolGrid
+ Ext.define('UsuariosXRolGrid', {
+     extend: 'Ext.grid.Panel',
+     //Definicion del alias que puede usado en un xtype
+     alias: 'widget.usuariosXrolGrid',
+     requires: [
+        'Ext.selection.CellModel',
+        'Ext.grid.*',
+        'Ext.data.*',
+        'Ext.util.*',
+        'Ext.form.*'
+     ],
+     xtype: 'cell-editing',
+     id : 'usuariosXrolGrid',
+     emptyText:'No hay registros...',
+     //Sobre escribimos este metodo de Ext.grid.Panel
+     initComponent : function() {
+         this.cellEditing = new Ext.grid.plugin.CellEditing({
+            clicksToEdit: 2
+         });
+
+         Ext.apply(this, {
+            plugins: [this.cellEditing]
+         });
+         //Definicion de las columnas del grid
+         this.columns = [
+             {xtype: 'rownumberer', width: 20, dataIndex: 'id', sortable: true},
+             {text: "Cédula", width: 100, dataIndex: 'Cedula', sortable: true},
+             {text: "Código Socio", width: 100, dataIndex: 'NumeroSocio', sortable: true},
+             {text: "Nombres", flex: 1, dataIndex: 'Nombres', sortable: true},
+             {text: "Apellidos", flex: 1, dataIndex: 'Apellidos', sortable: true},
+             {text: "Rol", width: 150, dataIndex: 'Rol', sortable: true}
+         ];
+         this.dockedItems = [ {
+            xtype: 'toolbar',
+            dock: 'bottom',
+            ui: 'footer',
+            layout: {
+                pack: 'center'
+            },
+            items: [
+                    { xtype: 'button',
+                     text: 'Añadir Usuario',
+                     listeners: {
+                       'click' : function() {
+                            if (rolSeleccionado != null){
+                                Ext.getCmp('winAgregarUsuario').show();
+                            }else{
+                                Ext.MessageBox.alert('Error', 'Disculpe, primero debe seleccionar un Rol.');
+                            }
+                       }
+                     }
+                 },
+                 {
+                     xtype: 'button',
+                     text: 'Quitar Usuario',
+                     listeners: {
+                        click : function() {
+                            if (itemUsuariosXRolGridSeleccionado!=null) {
+                                Ext.MessageBox.confirm('Confirmar', '\u00BFSeguro que deseas quitar el acceso al módulo \''+itemUsuariosXRolGridSeleccionado.Modulo+'\' del rol \''+itemUsuariosXRolGridSeleccionado.Rol+'\'?', function (id, value) {
+                                    if (id === 'yes') {
+                                        /*console.log('respuesta confirm: '+id);
+                                        var rol = itemUsuariosXRolGridSeleccionado.Rol;
+                                        var modulo = itemUsuariosXRolGridSeleccionado.Modulo;
+                                        var idRol = itemUsuariosXRolGridSeleccionado.idRol;
+                                        Ext.MessageBox.show({
+                                            title: 'Mensaje',
+                                            msg: 'El rol seleccionado es: ' + rol + '<br>' + 'La modulo seleccionada es: ' + modulo + '<br>' + 'El idRol seleccionado es: ' + idRol,
+                                            width:400,
+                                            buttons: Ext.MessageBox.OK
+                                        });
+                                        console.log(Ext.getCmp('usuariosXrolGrid').getSelectionModel().getCurrentPosition());*/
+                                        Ext.getCmp('usuariosXrolGrid').getStore().removeAt(Ext.getCmp('usuariosXrolGrid').getSelectionModel().getCurrentPosition().rowIdx);
+                                        itemUsuariosXRolGridSeleccionado = null;
+                                        Ext.getCmp('usuariosXrolGrid').getSelectionModel().deselectAll();
+                                    }else{
+                                        //console.log('respuesta confirm: '+id);
+                                        itemUsuariosXRolGridSeleccionado = null;
+                                        Ext.getCmp('usuariosXrolGrid').getSelectionModel().deselectAll();
+                                    }
+                                }, this); 
+                                return false;
+                            }else{
+                              Ext.MessageBox.alert('Error', 'Disculpe, primero debe seleccionar el modulo que desea quitar.');
+                            }                    
+                        }
+   
+                     }
+                  }]
+    } ];
+    // Origen de los datos, de un data store
+    this.store = Ext.create('UsuariosXRolStore');
+    this.forceFit = true;
+    this.scroll = false;
+    this.viewConfig = { style: {overflow: 'auto', overflowX: 'hidden' } };
+    this.verticalScroller = {xtype: 'paginggridscroller'};
+    this.listeners = {
+        load : function() {
+          itemUsuariosXRolGridSeleccionado = null;
+        },
+        itemclick : function() {
+          itemUsuariosXRolGridSeleccionado = this.getSelectionModel().selected.items[0].data;
+          //console.log(itemUsuariosXRolGridSeleccionado);
+        }
+    };
+
+    //Llamamos a la super clase a iniciacion del componente
+    UsuariosXRolGrid.superclass.initComponent.call(this);
+  }
+ });
+//*****************************************DataGridUsuariosXRol.js************************************
+ 
+//******************************************actualizarUsuariosXRol_Main.js****************************
 Ext.define('FieldContUsuariosXrol', {
     extend: 'Ext.form.Panel',
     xtype: 'form-fieldcontainer',
@@ -392,17 +751,19 @@ Ext.define('FContAgregarUsuarioARol', {
 
 
 Ext.onReady(function() {
-    $("#menuL_Cerrar_Ses").mousemove();
-    $("#menuL_Cerrar_Ses").mouseover();
     //Ext.MessageBox.alert('Mensaje', "Felicitaciones!  La libreria: 5.1 esta instalada correctamente!");
    //***************************************************************************************************
-    Ext.create('Ext.panel.Panel', {
-        title: '<h1 style="font-family: Georgia, "Times New Roman", Times, serif;">Actualizar Roles de Usuario</h1></br>',
-        id: 'panelPrincipal',
-        height: 600,
-        width: '95%',
+    Ext.create('Ext.form.Panel', {
+        title: 'Actualizar Roles de Usuario',
+        id: 'panelUsuariosXrol',
+        height: 500,
+        width: '85%',
         layout: 'border',
-        renderTo: 'marcoExtJs',
+        renderTo: 'formulario',
+        resizable   : true,
+        closable:true,
+        draggable:true,
+        modal: true,
         style: {
             marginLeft: 'auto',
             marginRight: 'auto'
@@ -423,6 +784,7 @@ Ext.onReady(function() {
             extend: 'Ext.form.Panel',
             title: 'Agregar usuarios al rol seleccionado',
             id:'winAgregarUsuario',
+            renderTo: 'formulario',
             modal: true,
             height: 300,
             width: 500,

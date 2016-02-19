@@ -13,12 +13,12 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('administrador.view.empleado', {
+Ext.define('winEmpleado', {
     extend: 'Ext.window.Window',
     alias: 'widget.empleado',
 
     requires: [
-        'administrador.view.empleadoViewModel',
+        //'administrador.view.empleadoViewModel',
         'Ext.form.Panel',
         'Ext.button.Button',
         'Ext.form.FieldSet',
@@ -28,9 +28,15 @@ Ext.define('administrador.view.empleado', {
         'Ext.grid.column.Check'
     ],
 
-    viewModel: {
+    /*viewModel: {
         type: 'empleado'
-    },
+    },*/
+    id:'winEmpleado',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
     height: 800,
     width: 900,
     title: 'Empleado (Ejecutivo)',
@@ -129,4 +135,8 @@ Ext.define('administrador.view.empleado', {
         }
     ]
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winEmpleado');
 });

@@ -13,25 +13,32 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('MyApp.view.listadoClientes', {
+Ext.define('winListadoClientes', {
     extend: 'Ext.window.Window',
 
     requires: [
-        'Ext.chart.Chart',
+        'Ext.data.*',
+        //'Ext.chart.*',
+        //'Ext.chart.Chart',
         'Ext.util.Point',
-        'Ext.chart.series.Pie',
+        //'Ext.chart.series.Pie',
         'Ext.form.Label',
         'Ext.grid.Panel',
         'Ext.grid.column.Number',
         'Ext.grid.column.Date',
         'Ext.grid.column.Boolean',
         'Ext.grid.View',
-        'Ext.chart.axis.Category',
-        'Ext.chart.axis.Numeric',
-        'Ext.chart.series.Line',
+        //'Ext.chart.axis.Category',
+        //'Ext.chart.axis.Numeric',
+        //'Ext.chart.series.Line',
         'Ext.button.Button'
     ],
-
+    id:'winListadoClientes',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
     height: 800,
     width: 900,
     layout: 'absolute',
@@ -194,4 +201,8 @@ Ext.define('MyApp.view.listadoClientes', {
         me.callParent(arguments);
     }
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winListadoClientes');
 });

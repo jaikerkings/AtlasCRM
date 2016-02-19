@@ -280,11 +280,10 @@
                 <!--*****************************************************************-->
                     <li id="menuLogout" class="dropdown" style="display:<%=visibilidadBloque%>;">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="username"><%=session[:current_user_name]%></span>
                             <span class="profile-ava" >
                                 <img id="imgAvaUsuario" alt="" src="<%=$CURRENT_USER_IMG%>">
                             </span>
-                            <span class="username"><%=session[:current_user_name]%></span>
-
                             <b class="caret" ></b>
                         </a>
                         <ul class="dropdown-menu extended logout" >

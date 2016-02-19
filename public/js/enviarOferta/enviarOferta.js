@@ -13,12 +13,12 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('administrador.view.enviarOferta', {
+Ext.define('winEnviarOferta', {
     extend: 'Ext.window.Window',
     alias: 'widget.enviaroferta',
 
     requires: [
-        'administrador.view.enviarOfertaViewModel',
+        //'administrador.view.enviarOfertaViewModel',
         'Ext.form.Panel',
         'Ext.grid.Panel',
         'Ext.grid.column.Date',
@@ -27,9 +27,15 @@ Ext.define('administrador.view.enviarOferta', {
         'Ext.button.Button'
     ],
 
-    viewModel: {
+    /*viewModel: {
         type: 'enviaroferta'
-    },
+    },*/
+    id:'winEnviarOferta',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
     height: 800,
     width: 900,
     title: 'Enviar Ofertas y Promociones a Clientes',
@@ -114,4 +120,8 @@ Ext.define('administrador.view.enviarOferta', {
         }
     ]
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winEnviarOferta');
 });

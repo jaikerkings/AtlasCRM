@@ -13,12 +13,12 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('administrador.view.redSocial', {
+Ext.define('winRedesSociales', {
     extend: 'Ext.window.Window',
     alias: 'widget.redsocial',
 
     requires: [
-        'administrador.view.redSocialViewModel',
+        //'administrador.view.redSocialViewModel',
         'Ext.form.Panel',
         'Ext.grid.Panel',
         'Ext.view.Table',
@@ -26,9 +26,16 @@ Ext.define('administrador.view.redSocial', {
         'Ext.button.Button'
     ],
 
-    viewModel: {
+    /*viewModel: {
         type: 'redsocial'
-    },
+    },*/
+    id:'winRedesSociales',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
+
     height: 800,
     width: 900,
     title: 'Redes Sociales',
@@ -75,4 +82,8 @@ Ext.define('administrador.view.redSocial', {
         }
     ]
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winRedesSociales');
 });

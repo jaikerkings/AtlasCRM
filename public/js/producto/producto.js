@@ -13,9 +13,9 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('MyApp.view.producto', {
+Ext.define('winProductos', {
     extend: 'Ext.window.Window',
-
+    
     requires: [
         'Ext.form.Panel',
         'Ext.form.field.TextArea',
@@ -24,7 +24,12 @@ Ext.define('MyApp.view.producto', {
         'Ext.button.Button',
         'Ext.Img'
     ],
-
+    id:'winProductos',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
     height: 800,
     width: 900,
     layout: 'absolute',
@@ -103,4 +108,8 @@ Ext.define('MyApp.view.producto', {
         me.callParent(arguments);
     }
 
+});
+
+Ext.onReady(function() {
+    Ext.create('winProductos');
 });

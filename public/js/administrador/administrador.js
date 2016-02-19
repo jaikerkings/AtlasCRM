@@ -28,7 +28,6 @@ Ext.define('administradorViewController', {
 Ext.define('winAdministrador', {
     extend: 'Ext.window.Window',
     alias: 'widget.administrador',
-    id:'winAdministrador',
     requires: [
         'administradorViewModel',
         'Ext.form.Panel',
@@ -46,7 +45,12 @@ Ext.define('winAdministrador', {
     viewModel: {
         type: 'administrador'
     },
-    autoShow: true,
+    id:'winAdministrador',
+    renderTo: 'formulario',
+    autoShow: false,
+    hidden: true,
+    closeAction:'hide',
+    floating: false,
     height: 800,
     width: 900,
     title: 'Administrador',

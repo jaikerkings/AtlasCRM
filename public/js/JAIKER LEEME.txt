@@ -1,0 +1,10 @@
+
+ROL: #2 - Administrador de la Empresa
+
+- Campaña Publicitaria
+- Categoría
+
+ROL: #4- Analista
+
+- Listados de Productos
+- Reporte de Promociones
